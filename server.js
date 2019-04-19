@@ -1,9 +1,17 @@
 const express = require('express');
-const games = require('./games.js');
+const gamesRouter = require('./games.js');
 
 const server = express();
 
 server.use(express.json());
+
+server.use('/games', gamesRouter);
+
+server.get('/', (req, res) => {
+    res.status(200).json({
+        api: 'running'
+    })
+})
 
 
 module.exports = server;
